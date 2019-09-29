@@ -35,12 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin(['id' => 'event-new-form']); ?>
 
                     <?= $form->field($model, 'title')->textInput(['autofocus' => true]) ?>
-
-                    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
+                    <?= $form->field($model, 'description')->textarea(['rows' => 2]) ?>
                     <?= $form->field($model, 'location') ?>
-
-                    <?= $form->field($model, 'time') ?>
+                    <?= $form->field($model, 'starts') ?>
+                    <?= $form->field($model, 'ends') ?>
 
                     <div class="form-group">
                         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'event-new-button']) ?>

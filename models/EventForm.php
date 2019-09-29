@@ -12,7 +12,8 @@ class EventForm extends Model
     public $title;
     public $description;
     public $location;
-    public $time;
+    public $starts;
+    public $ends;
 
 
     /**
@@ -22,7 +23,7 @@ class EventForm extends Model
     {
         return [
             // title, description, location and time are required
-            [['title', 'description', 'location', 'time'], 'required'],
+            [['title', '$starts', 'ends'], 'required'],
         ];
     }
 
