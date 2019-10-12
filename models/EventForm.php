@@ -2,18 +2,18 @@
 
 namespace app\models;
 
-use yii\base\Model;
+use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * ContactForm is the model behind the contact form.
  */
-class EventForm extends Model
+class EventForm extends ActiveRecord
 {
-    public $title;
-    public $description;
-    public $location;
-    public $starts;
-    public $ends;
+    static public function tableName()
+    {
+        return "event";
+    }
 
 
     /**
@@ -22,9 +22,30 @@ class EventForm extends Model
     public function rules()
     {
         return [
-            // title, description, location and time are required
-            [['title', '$starts', 'ends'], 'required'],
+            // title and starts are required
+            [['title', 'starts'], 'required'],
+            // title, description and location must be a string
+            [['title', 'description', 'location'], 'string'],
+            // starts and ends must be a string
+            [['starts', 'ends'], 'string'],
         ];
+    }
+
+
+    public function create_or_edit()
+    {
+        $result = false;
+        $user_id = Yii::$app->user->getId();
+
+        if ($this->validate()) {
+            if (!$this->ends){
+                $this->ends = $this->starts;
+            }
+            $this->user_id = $user_id;
+            $this->save();
+            $result = !$this->hasErrors();
+        }
+        return $result;
     }
 
 }
