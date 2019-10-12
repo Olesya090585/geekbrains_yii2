@@ -49,6 +49,7 @@ $config = [
             'rules' => [
                 'welcome' => 'welcome/index',
                 'event/new' => 'event/new',
+                'event/edit/<id:\d+>' => 'event/edit',
                 'user/register' => 'site/register',
                 'user/login' => 'site/login'
             ],
