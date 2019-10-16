@@ -7,22 +7,16 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'New user';
+$this->title = 'User';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('registrationFormSubmitted')): ?>
-
-        <div class="alert alert-success">
-            User created.
-        </div>
-
-        <p>
-
-        </p>
-
+        <div class="alert alert-success">User created.</div><p></p>
+    <?php elseif (Yii::$app->session->hasFlash('userEditFormSubmitted')): ?>
+        <div class="alert alert-success">User updated.</div><p></p>
     <?php else: ?>
 
         <p>
@@ -32,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-lg-5">
 
-                <?php $form = ActiveForm::begin(['id' => 'user-new-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'user-form']); ?>
 
                     <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>
@@ -40,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'email')->textInput() ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'user-new-button']) ?>
+                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'user-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>
