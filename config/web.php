@@ -12,6 +12,9 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '1vy3Tw9-MuVbMjJ7oee-JCczTwPPjpmV',
@@ -51,7 +54,8 @@ $config = [
                 'event/new' => 'event/new',
                 'event/edit/<id:\d+>' => 'event/edit',
                 'user/register' => 'site/register',
-                'user/login' => 'site/login'
+                'user/login' => 'site/login',
+                'admin' => 'admin/index',
             ],
         ],
     ],
