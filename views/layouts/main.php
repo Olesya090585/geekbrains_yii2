@@ -44,6 +44,14 @@ AppAsset::register($this);
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
+                '<li>'
+                . Html::beginForm(['/calendar'], 'post')
+                . Html::submitButton(
+                    'Calendar',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'.
                     '<li>'
                 . Html::beginForm(['/user/profile'], 'post')
                 . Html::submitButton(
