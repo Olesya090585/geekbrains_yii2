@@ -55,6 +55,8 @@ $config = [
                 'event/edit/<id:\d+>' => 'event/edit',
                 'user/register' => 'site/register',
                 'user/login' => 'site/login',
+                'user/profile' => 'site/profile',
+                'calendar' => 'calendar/index',
                 'admin' => 'admin/index',
             ],
         ],

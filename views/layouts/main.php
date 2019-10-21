@@ -45,6 +45,30 @@ AppAsset::register($this);
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
+                . Html::beginForm(['/event/new'], 'get')
+                . Html::submitButton(
+                    'New event',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'.
+                '<li>'
+                . Html::beginForm(['/calendar'], 'get')
+                . Html::submitButton(
+                    'Calendar',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'.
+                    '<li>'
+                . Html::beginForm(['/user/profile'], 'get')
+                . Html::submitButton(
+                    'Profile',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'.
+                '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
                     'Logout (' . Yii::$app->user->identity->username . ')',

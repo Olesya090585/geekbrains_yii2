@@ -50,6 +50,21 @@ class RegistrationForm extends Model
         return $result;
     }
 
+    public function update($user_id)
+    {
+        $result = false;
+        if ($this->validate()) {
+            $userModel = User::findOne($user_id);
+            $userModel->username = $this->username;
+            $userModel->email = $this->email;
+            $userModel->setPassword($this->password);
+            $userModel->generateAuthKey();
+            $userModel->save();
+            $result = !$userModel->hasErrors();
+        }
+        return $result;
+    }
+
     /**
      * Validates the password.
      * This method serves as the inline validation for password.

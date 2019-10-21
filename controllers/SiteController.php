@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\RegistrationForm;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -80,6 +81,30 @@ class SiteController extends Controller
             Yii::$app->session->setFlash('registrationFormSubmitted');
             return $this->redirect(['user/login'], 301);
         }
+        return $this->render('register', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionProfile()
+    {
+        $request = Yii::$app->request;
+        $session = Yii::$app->session;
+        $user_id = Yii::$app->user->getId();
+
+        $user_data = User::findOne($user_id);
+        $username = $user_data->username;
+        $email = $user_data->email;
+
+        $model = new RegistrationForm();
+        $model->username = $username;
+        $model->email = $email;
+
+        if ($model->load($request->post()) && $model->update($user_id)) {
+            $session->setFlash('userEditFormSubmitted');
+            return $this->refresh();
+        }
+
         return $this->render('register', [
             'model' => $model,
         ]);
